@@ -1,6 +1,7 @@
 package com.shrey.merchantservice.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Date;
 
 import org.slf4j.Logger;
@@ -46,6 +47,9 @@ public class OfferServiceImpl implements OfferService {
 	@Override
 	public Offer findById(Long id) {
 		logger.info("finding Offer ==> " + id);
+		Optional<Offer> optionalOffer = this.offerRepository.findById(id);
+		if (optionalOffer.isEmpty())
+			return null;
 		return this.offerRepository.findById(id).get();
 	}
 
